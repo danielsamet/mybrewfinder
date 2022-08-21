@@ -3,7 +3,7 @@ import {Box, ChakraProvider, Grid, theme,} from "@chakra-ui/react"
 import {WelcomePage} from "./pages/WelcomePage";
 import {ColorModeSwitcher} from "./ColorModeSwitcher";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {Map} from "./pages/Map";
+import {MapPage} from "./pages/MapPage";
 
 export const App = () => (
     <ChakraProvider theme={theme}>
@@ -14,7 +14,7 @@ export const App = () => (
                 <BrowserRouter>
                     <Routes>
                         <Route path={"/"} element={<WelcomePage/>} />
-                        <Route path={"/map"} element={<Map/>} />
+                        <Route path={"/map"} element={<MapPage/>} />
                     </Routes>
                 </BrowserRouter>
             </Grid>
