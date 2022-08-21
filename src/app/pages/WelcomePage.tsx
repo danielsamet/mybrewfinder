@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 export const WelcomePage = () => {
     return (
-        <VStack spacing={8}>
+        <VStack spacing={8} w={"100%"} justifyContent={"center"}>
             <Logo h="40vmin" mb={5} pointerEvents="none"/>
             <Heading>
                 Welcome to <Code fontSize="xx-large">mybrewfinder</Code>!

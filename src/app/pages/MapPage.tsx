@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import {Map, Marker} from "pigeon-maps"
-import {Container, Flex} from "@chakra-ui/react";
+import {Flex} from "@chakra-ui/react";
 import {Brewery, sampleBreweryData} from "./brewerySampleData";
 import {getCenterCoords} from "../utils";
 import {BreweryList} from "./BreweryList";
@@ -18,20 +18,18 @@ export const MapPage = () => {
     }
 
     return (
-        <Container maxW={"100%"} textAlign={"start"}>
-            <Flex gap={5}>
-                <Map height={800} center={centerCoords} defaultZoom={11}>
-                    {breweries.map(brewery =>
-                        <Marker width={50} key={brewery.id}
-                                anchor={[Number(brewery.latitude), Number(brewery.longitude)]}/>)}
-                </Map>
+        <Flex flexDirection={"row"} flexGrow={1} w={"100%"} gap={5} my={"auto"} textAlign={"start"}>
+            <Map height={800} center={centerCoords} defaultZoom={11}>
+                {breweries.map(brewery =>
+                    <Marker width={50} key={brewery.id}
+                            anchor={[Number(brewery.latitude), Number(brewery.longitude)]}/>)}
+            </Map>
 
-                <Flex w={"40%"} flexDirection={"column"} justifyContent={"space-between"} h={"40em"}>
-                    <BreweryList breweries={breweries} handleBreweryClick={handleBreweryClick}/>
+            <Flex w={"40%"} flexDirection={"column"} justifyContent={"space-between"}>
+                <BreweryList breweries={breweries} handleBreweryClick={handleBreweryClick}/>
 
-                    {selectedBrewery && <BreweryDetails brewery={selectedBrewery}/>}
-                </Flex>
+                {selectedBrewery && <BreweryDetails brewery={selectedBrewery}/>}
             </Flex>
-        </Container>
+        </Flex>
     )
 }
