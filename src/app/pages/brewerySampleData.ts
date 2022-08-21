@@ -1,4 +1,4 @@
-type Brewery = {
+export type Brewery = {
     id: string;
     name: string;
     brewery_type: string;
@@ -18,7 +18,7 @@ type Brewery = {
     created_at: string;
 };
 
-export const sampleMapData: Brewery[] = [
+export const sampleBreweryData: Brewery[] = [
     {
         "id": "10-barrel-brewing-co-san-diego",
         "name": "10 Barrel Brewing Co",
