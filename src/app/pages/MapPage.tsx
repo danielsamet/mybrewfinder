@@ -1,21 +1,27 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import {Map, Marker} from "pigeon-maps"
 import {Flex} from "@chakra-ui/react";
 import {Brewery, sampleBreweryData} from "./brewerySampleData";
 import {getCenterCoords} from "../utils";
 import {BreweryList} from "./BreweryList";
 import {BreweryDetails} from "./BreweryDetails";
+import {getBreweriesByCity} from "../providers/openbrewery";
 
 export const MapPage = () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [breweries, _setBreweries] = useState<Brewery[]>(sampleBreweryData);
+    const [breweries, setBreweries] = useState<Brewery[]>(sampleBreweryData);
     const [centerCoords, setCenterCoords] = useState<[number, number]>(getCenterCoords(breweries))
     const [selectedBrewery, setSelectedBrewery] = useState<Brewery | undefined>();
+    const [citySearchValue, setCitySearchValue] = useState<string>('London');
 
     const handleBreweryClick = (brewery: Brewery) => {
         setCenterCoords([Number(brewery.latitude), Number(brewery.longitude)]);
         setSelectedBrewery(brewery);
     }
+
+    useEffect(() => {
+        const timeOutId = setTimeout(() => setBreweries(getBreweriesByCity(citySearchValue)), 500);
+        return () => clearTimeout(timeOutId);
+    }, [citySearchValue])
 
     return (
         <Flex flexDirection={"row"} flexGrow={1} w={"100%"} gap={5} my={"auto"} textAlign={"start"}>
@@ -26,7 +32,7 @@ export const MapPage = () => {
             </Map>
 
             <Flex w={"40%"} flexDirection={"column"} justifyContent={"space-between"}>
-                <BreweryList breweries={breweries} handleBreweryClick={handleBreweryClick}/>
+                <BreweryList breweries={breweries} handleBreweryClick={handleBreweryClick} searchValue={citySearchValue} searchValueSetter={setCitySearchValue}/>
 
                 {selectedBrewery && <BreweryDetails brewery={selectedBrewery}/>}
             </Flex>

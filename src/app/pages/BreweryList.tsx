@@ -7,16 +7,22 @@ import {Brewery} from "./brewerySampleData";
 type BreweryListProps = {
     breweries: Brewery[];
     handleBreweryClick: (brewery: Brewery) => void;
+    searchValue: string;
+    searchValueSetter: (city: string) => void;
 }
 
-export const BreweryList = ({breweries, handleBreweryClick}: BreweryListProps) => {
+export const BreweryList = ({breweries, handleBreweryClick, searchValue, searchValueSetter}: BreweryListProps) => {
     return (
         <Card w={"100%"} bg={"#011627"} color={"white"}>
             <InputGroup mb={5}>
                 <InputLeftElement pointerEvents="none">
                     <Icon as={FiSearch} color="muted" boxSize="5"/>
                 </InputLeftElement>
-                <Input placeholder="City"/>
+                <Input placeholder="City"
+                       value={searchValue}
+                       onChange={
+                           (event: React.ChangeEvent<HTMLInputElement>) => searchValueSetter(event.currentTarget.value)
+                       }/>
             </InputGroup>
 
             <Stack divider={<StackDivider/>} spacing="1">
