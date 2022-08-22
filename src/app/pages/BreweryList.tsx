@@ -25,7 +25,7 @@ export const BreweryList = ({breweries, handleBreweryClick, searchValue, searchV
                        }/>
             </InputGroup>
 
-            <Stack divider={<StackDivider/>} spacing="1">
+            <Stack divider={<StackDivider/>} spacing="1" maxH={"20em"} overflowY={"scroll"}>
                 {breweries.map((brewery) => (
                     <Stack key={brewery.id} fontSize="sm" p="4" spacing="0.5" cursor={"pointer"}
                            onClick={() => handleBreweryClick(brewery)}
