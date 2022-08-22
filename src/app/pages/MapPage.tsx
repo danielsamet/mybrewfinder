@@ -11,7 +11,7 @@ export const MapPage = () => {
     const [breweries, setBreweries] = useState<Brewery[]>(sampleBreweryData);
     const [centerCoords, setCenterCoords] = useState<[number, number]>(getCenterCoords(breweries))
     const [selectedBrewery, setSelectedBrewery] = useState<Brewery | undefined>();
-    const [citySearchValue, setCitySearchValue] = useState<string>('London');
+    const [citySearchValue, setCitySearchValue] = useState<string>('Chicago');
 
     const handleBreweryClick = (brewery: Brewery) => {
         setCenterCoords([Number(brewery.latitude), Number(brewery.longitude)]);
@@ -19,9 +19,13 @@ export const MapPage = () => {
     }
 
     useEffect(() => {
-        const timeOutId = setTimeout(() => setBreweries(getBreweriesByCity(citySearchValue)), 500);
+        const timeOutId = setTimeout(async () => setBreweries((await getBreweriesByCity(citySearchValue)).filter(brewery => brewery.latitude && brewery.longitude)), 500);
         return () => clearTimeout(timeOutId);
     }, [citySearchValue])
+
+    useEffect(() => {
+        setCenterCoords(getCenterCoords(breweries))
+    }, [breweries])
 
     return (
         <Flex flexDirection={"row"} flexGrow={1} w={"100%"} gap={5} my={"auto"} textAlign={"start"}>
@@ -32,7 +36,8 @@ export const MapPage = () => {
             </Map>
 
             <Flex w={"40%"} flexDirection={"column"} justifyContent={"space-between"}>
-                <BreweryList breweries={breweries} handleBreweryClick={handleBreweryClick} searchValue={citySearchValue} searchValueSetter={setCitySearchValue}/>
+                <BreweryList breweries={breweries} handleBreweryClick={handleBreweryClick} searchValue={citySearchValue}
+                             searchValueSetter={setCitySearchValue}/>
 
                 {selectedBrewery && <BreweryDetails brewery={selectedBrewery}/>}
             </Flex>

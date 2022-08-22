@@ -10,8 +10,8 @@ export type Brewery = {
     county_province: string | null;
     postal_code: string;
     country: string;
-    longitude: string;
-    latitude: string;
+    longitude: string | null;
+    latitude: string | null;
     phone: string | null;
     website_url: string | null;
     updated_at: string;
@@ -20,60 +20,41 @@ export type Brewery = {
 
 export const sampleBreweryData: Brewery[] = [
     {
-        "id": "10-barrel-brewing-co-san-diego",
-        "name": "10 Barrel Brewing Co",
-        "brewery_type": "large",
-        "street": "1501 E St",
-        "address_2": null,
-        "address_3": null,
-        "city": "San Diego",
-        "state": "California",
-        "county_province": null,
-        "postal_code": "92101-6618",
-        "country": "United States",
-        "longitude": "-117.129593",
-        "latitude": "32.714813",
-        "phone": "6195782311",
-        "website_url": "http://10barrel.com",
-        "updated_at": "2022-08-20T02:56:08.975Z",
-        "created_at": "2022-08-20T02:56:08.975Z"
-    },
-    {
-        "id": "2kids-brewing-company-san-diego",
-        "name": "2Kids Brewing Company",
+        "id": "5-rabbit-cerveceria-inc-chicago",
+        "name": "5 Rabbit Cerveceria Inc",
         "brewery_type": "micro",
-        "street": "8680 Miralani Dr Ste 123",
+        "street": "6398 W 74th St",
         "address_2": null,
         "address_3": null,
-        "city": "San Diego",
-        "state": "California",
+        "city": "Chicago",
+        "state": "Illinois",
         "county_province": null,
-        "postal_code": "92126-6391",
+        "postal_code": "60638-6129",
         "country": "United States",
-        "longitude": "-117.137429",
-        "latitude": "32.896584",
-        "phone": "8584805437",
-        "website_url": "http://www.2kidsBrewing.com",
+        "longitude": "-87.6572069",
+        "latitude": "41.7595502",
+        "phone": "3128959591",
+        "website_url": "http://www.5rabbitbrewery.com",
         "updated_at": "2022-08-20T02:56:08.975Z",
         "created_at": "2022-08-20T02:56:08.975Z"
     },
     {
-        "id": "32-north-brewing-co-san-diego",
-        "name": "32 North Brewing Co",
-        "brewery_type": "closed",
-        "street": "8655 Production Ave Ste A",
+        "id": "alarmist-brewing-co-chicago",
+        "name": "Alarmist Brewing Co",
+        "brewery_type": "micro",
+        "street": "4055 W Peterson Ave Ste REAR",
         "address_2": null,
         "address_3": null,
-        "city": "San Diego",
-        "state": "California",
+        "city": "Chicago",
+        "state": "Illinois",
         "county_province": null,
-        "postal_code": "92121-2258",
+        "postal_code": "60646-6072",
         "country": "United States",
-        "longitude": "-117.1649841601659",
-        "latitude": "32.88313236843027",
-        "phone": null,
-        "website_url": null,
+        "longitude": null,
+        "latitude": null,
+        "phone": "7739882536",
+        "website_url": "http://alarmistbrewing.com",
         "updated_at": "2022-08-20T02:56:08.975Z",
         "created_at": "2022-08-20T02:56:08.975Z"
-    }
+    },
 ]
