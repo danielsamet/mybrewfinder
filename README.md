@@ -3,9 +3,6 @@
 This project was bootstrapped with
 [Create React App](https://github.com/facebook/create-react-app).
 
-Access it online at [mybrewfinder](https://velvety-lamington-6883b5.netlify.app/). (This will be deployed so
-long as netlify offer it for free and don't break anything, 🤞 that's a while).
-
 ## Overview
 
 This was a quick exercise to create a React app that provides an interactive map for breweries. It's intended use is to
