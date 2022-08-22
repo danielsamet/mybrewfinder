@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import {Map, Marker} from "pigeon-maps"
-import {Flex} from "@chakra-ui/react";
+import {Flex, useBreakpointValue} from "@chakra-ui/react";
 import {Brewery, sampleBreweryData} from "./brewerySampleData";
 import {getCenterCoords} from "../utils";
 import {BreweryList} from "./BreweryList";
@@ -19,7 +19,9 @@ export const MapPage = () => {
     }
 
     useEffect(() => {
-        const timeOutId = setTimeout(async () => setBreweries((await getBreweriesByCity(citySearchValue)).filter(brewery => brewery.latitude && brewery.longitude)), 500);
+        const timeOutId = setTimeout(async () => setBreweries(
+            (await getBreweriesByCity(citySearchValue)).filter(brewery => brewery.latitude && brewery.longitude)
+        ), 500);
         return () => clearTimeout(timeOutId);
     }, [citySearchValue])
 
@@ -28,14 +30,16 @@ export const MapPage = () => {
     }, [breweries])
 
     return (
-        <Flex flexDirection={"row"} flexGrow={1} w={"100%"} gap={5} my={"auto"} textAlign={"start"}>
+        <Flex flexDirection={"row"} flexGrow={1} w={"100%"} gap={5} my={"auto"} textAlign={"start"}
+              flexWrap={useBreakpointValue({base: "wrap", md: "nowrap"})}>
             <Map height={800} center={centerCoords} defaultZoom={11}>
                 {breweries.map(brewery =>
                     <Marker width={50} key={brewery.id}
                             anchor={[Number(brewery.latitude), Number(brewery.longitude)]}/>)}
             </Map>
 
-            <Flex w={"40%"} flexDirection={"column"} justifyContent={"space-between"}>
+            <Flex w={useBreakpointValue({base: "100%", md: "40%"})} gap={5}
+                  flexDirection={useBreakpointValue({base: "column", sm: "row", md: "column"})} justifyContent={"space-between"}>
                 <BreweryList breweries={breweries} handleBreweryClick={handleBreweryClick} searchValue={citySearchValue}
                              searchValueSetter={setCitySearchValue}/>
 
